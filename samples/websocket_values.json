@@ -1,0 +1,237 @@
+{
+    "menu": {
+        "state": 2, //List of states could be found here => https://vk.cc/aA7DJJ
+        "skinFolder": "MoeYandere 2018-05-13",
+        "gameMode": 0, //STD, Taiko, Catch, Mania (Ascending order)
+        "isChatEnabled": 0, //Is F8/F9 triggered?
+        "bm": {
+            "time": {
+                "firstObj": 6963,
+                "current": 21984,
+                "full": 260563, //Please never use this unless absolutely necessary. Deprecated token. (indicates time of the last hit object) Use mp3 instead. 
+                "mp3": 269836
+            },
+            "id": 1083202,
+            "set": 509341,
+            "md5": "15e4903f055561cad44f48d8ae929550",
+            "rankedStatus": 4, //unknown, unsubmitted, pending/wip/graveyard, unused, ranked, approved, qualified (Ascending order)
+            "metadata": {
+                "artist": "REOL",
+                "title": "YoiYoi Kokon",
+                "mapper": "Pho",
+                "difficulty": "Timeless Dance"
+            },
+            "stats": {
+                "AR": 10,
+                "CS": 5.4599996,
+                "OD": 10,
+                "HP": 8.4,
+                "SR": 3.98, //Live SR, changes as you play the map
+                "BPM": {
+                    "min": 150,
+                    "max": 150
+                },
+                "fullSR": 6.44,
+                "memoryAR": 9.6,
+                "memoryCS": 4.2,
+                "memoryOD": 8,
+                "memoryHP": 6
+            },
+            "path": {
+                "full": "509341 REOL - YoiYoi Kokon\\bg.jpg",
+                "folder": "509341 REOL - YoiYoi Kokon",
+                "file": "REOL - YoiYoi Kokon (Pho) [Timeless Dance].osu",
+                "bg": "bg.jpg",
+                "audio": "audio.mp3"
+            }
+        },
+        "mods": {
+            "num": 16,
+            "str": "HR"
+        },
+        "pp": {
+            "100": 432,
+            "99": 365,
+            "98": 327,
+            "97": 305,
+            "96": 292,
+            "95": 284,
+            "strains": [ //Difficulty strain of the map, could be used to display strain graph
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                48.16962718963623,
+                48.16962718963623,
+                45.56485843658447,
+                70.59610366821289,
+                70.64111709594727,
+                78.77282524108887, 
+                174.9065968440129,
+                171.57178192138673,
+                154.53320966448103,
+                133.339404296875,
+                141.12918949127197,
+                195.2433319091797,
+                0
+            ]
+        }
+    },
+    "gameplay": {
+        "gameMode": 0,
+        "name": "Vaxei 2",
+        "score": 120917,
+        "accuracy": 86.73469345332401,
+        "combo": {
+            "current": 86,
+            "max": 86
+        },
+        "hp": {
+            "normal": 197.5853537607667,
+            "smooth": 195.14011574928378
+        },
+        "hits": {
+            "300": 45,
+            "200": 6,
+            "geki": 8,
+            "100": 11,
+            "katu": 6,
+            "50": 0,
+            "0": 0,
+            "sliderBreaks": 0,
+            "grade": {
+                  "current": "B",
+                  "maxThisPlay": "A"
+            },
+            "unstableRate": 131.88863093302524,
+            "hitErrorArray": [ //Unstable rate array
+                2,
+                35,
+                -2,
+                4,
+                24,
+                38,
+                1,
+                -20,
+                12,
+                20,
+                27,
+                27,
+                18,
+                8,
+                17,
+                0,
+                -2,
+                16,
+                28,
+                40,
+                23,
+                -5,
+                4,
+                27,
+                25,
+                28,
+                23,
+                5,
+                10,
+                6,
+                -6,
+                10,
+                4,
+                7,
+                -13,
+                22,
+                14,
+                11,
+                -7,
+                6,
+                -8,
+                -8,
+                -2,
+                -2,
+                -7,
+                10,
+                17,
+                0,
+                1,
+                21,
+                6,
+                -2,
+                7,
+                18,
+                7,
+                14
+            ]
+        },
+        "pp": {
+            "current": 51,
+            "fc": 385,
+            "maxThisPlay": 385 //Possible pp this play, counts misses
+        },
+        "leaderboard": {
+            "hasLeaderboard": true,
+            "ourplayer": {
+                "name": "Vaxei 2",
+                "score": 120917,
+                "combo": 86,
+                "maxCombo": 86,
+                "mods": "HR",
+                "h300": 45,
+                "h100": 11,
+                "h50": 0,
+                "h0": 0,
+                "team": 0, //0 - solo, 1 OR 2 is BLUE/RED
+                "position": 51,
+                "isPassing": 1
+            },
+            "slots": [{ //gameplay leaderboard slots. Score order
+                    "name": "Exarch",
+                    "score": 54862276,
+                    "combo": 0, //only visible in multiplayer or ourplayer in solo
+                    "maxCombo": 1811,
+                    "mods": "HDHR",
+                    "h300": 1115,
+                    "h100": 25,
+                    "h50": 0,
+                    "h0": 0,
+                    "team": 0,
+                    "position": 1,
+                    "isPassing": 1
+                },
+                {
+                    "name": "_Criller",
+                    "score": 52751571,
+                    "combo": 0,
+                    "maxCombo": 1814,
+                    "mods": "HD",
+                    "h300": 1140,
+                    "h100": 0,
+                    "h50": 0,
+                    "h0": 0,
+                    "team": 0,
+                    "position": 2,
+                    "isPassing": 1
+                },
+                {
+                    "name": "Vaxei 2",
+                    "score": 120917,
+                    "combo": 86,
+                    "maxCombo": 86,
+                    "mods": "HR",
+                    "h300": 45,
+                    "h100": 11,
+                    "h50": 0,
+                    "h0": 0,
+                    "team": 0,
+                    "position": 51,
+                    "isPassing": 1
+                }
+            ]
+        }
+    }
+}
