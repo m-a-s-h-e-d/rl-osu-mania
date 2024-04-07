@@ -16,6 +16,7 @@ if not data:
 running_processes = (process.name() for process in psutil.process_iter())
 for process in data['processes'].values():
   if not process in running_processes:
+
     raise ProcessLookupError(f'Process {process} is not running, please run it and try again.\n'\
                              f'If this issue persists, check the process names in settings.yml.')
   
@@ -43,9 +44,13 @@ def start_game(ws):
       except:
         pass
 
+
+
     if env.ws.complete:
       env.reset()
-      env.model.save('models/current.h5')
+      env.model.train(True, _)
+      env.model.model.save(f'./models/model_{_}.h5')
+      break
 
 def start_program():
   ws = MemoryWebSocket(ws_endpoint)

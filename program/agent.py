@@ -98,8 +98,8 @@ class DQNAgent:
         model = Sequential()
 
         # MANUALLY UPDATE THE WIDTH AND HEIGHT OF THE OBSERVATION WINDOW HERE
-        # observation_space = 60000, IMAGE_WIDTH, IMAGE_HEIGHT, 1
-        observation_space = 60000, 732, 720, 1
+        # observation_space = 60000, IMAGE_WIDTH, IMAGE_HEIGHT, 1dkdjkdkfjkdkj
+        observation_space = 60000, 51, 50, 1
         action_space = self.env.action_space.n
 
         model.add(Conv2D(32, (3, 3), activation='relu', input_shape=observation_space[1:]))

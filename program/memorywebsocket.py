@@ -15,7 +15,6 @@ class MemoryWebSocket():
     self.state = None
     self.playing = False
     self.complete = False
-    self.failed = False
     self.prev_hits = [0, 0, 0, 0, 0, 0]
     self.hits = [0, 0, 0, 0, 0, 0] # PERFECT, 300, sliderBreak (200), 100, 50, 0
 
@@ -23,7 +22,6 @@ class MemoryWebSocket():
     print("Resetting state")
     self.playing = False
     self.complete = False
-    self.failed = False
     self.hits = [0, 0, 0, 0, 0, 0]
     self.prev_hits = [0, 0, 0, 0, 0, 0]
 
@@ -34,20 +32,14 @@ class MemoryWebSocket():
       if game_mode is not GameMode.MANIA.value:
         print('Game mode is not implemented')
         return
-      # Check for failure
-      if self.playing and self.data['gameplay']['hp']['normal'] == 0:
-        self.failed = True
-        self.playing = False
-        self.complete = True
-      else:
-        self.playing = True
-        self.complete = False
-        self.hits[0] = self.data['gameplay']['hits']['geki']
-        self.hits[1] = self.data['gameplay']['hits']['300']
-        self.hits[2] = self.data['gameplay']['hits']['sliderBreaks']
-        self.hits[3] = self.data['gameplay']['hits']['100']
-        self.hits[4] = self.data['gameplay']['hits']['50']
-        self.hits[5] = self.data['gameplay']['hits']['0']
+      self.playing = True
+      self.complete = False
+      self.hits[0] = self.data['gameplay']['hits']['geki']
+      self.hits[1] = self.data['gameplay']['hits']['300']
+      self.hits[2] = self.data['gameplay']['hits']['sliderBreaks']
+      self.hits[3] = self.data['gameplay']['hits']['100']
+      self.hits[4] = self.data['gameplay']['hits']['50']
+      self.hits[5] = self.data['gameplay']['hits']['0']
     else:
       # Check for completion
       if self.playing:
