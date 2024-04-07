@@ -1,5 +1,9 @@
 # Large files
 *.ai
+gosumemory.exe
+executables/static/
+models
+logs
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

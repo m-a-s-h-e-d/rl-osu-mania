@@ -1,0 +1,22 @@
+# Settings for the machine learning model
+
+# Program process names
+processes: # Change these if they don't match your process names
+  osu: "osu!.exe" 
+  gosumemory: "gosumemory.exe"
+
+# Endpoints
+endpoint:
+  gosumemory: "ws://localhost:24050/ws"
+
+# Keybindings found in osu! client settings for osu!mania
+# This can be modified for more than 4K (4 key)
+keybinding:
+  key1: "d"
+  key2: "f"
+  key3: "j"
+  key4: "k"
+
+# Rewards for certain events
+rewards:
+  na: "nothing yet"
