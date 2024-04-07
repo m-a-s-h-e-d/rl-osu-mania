@@ -1,4 +1,4 @@
-# rl-osu-mania
+# rl-osu-mania!
 
 A reinforcement learning model created for osu!mania by feeding game statistics with [gosumemory](https://github.com/l3lackShark/gosumemory)
 
