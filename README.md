@@ -2,9 +2,13 @@
 
 A reinforcement learning model created for osu!mania by feeding game statistics with [gosumemory](https://github.com/l3lackShark/gosumemory)
 
+# Setup
+
+Refer to this [tutorial document](samples/reinforcement_learning_tutorial.pdf) for setup and adaptations.
+
 # Modifications
 
-Refer to [samples](samples) directory for more details on how you can modify the model settings
+Refer to [samples](samples) directory for more details on how you can modify the model settings.
 
 # WARNING
 
