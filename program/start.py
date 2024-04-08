@@ -30,7 +30,7 @@ def train_agent():
       train_step += 1
       try:
         print(f'Training at step {train_step}')
-        agent.train(epochs, training_batch_size, True)
+        agent.train(epochs, training_batch_size)
       except Exception as e:
         print(f'Failed to train: Error: {e}')
         time.sleep(5)
