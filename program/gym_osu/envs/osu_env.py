@@ -2,7 +2,6 @@ import cv2
 import gym
 import numpy as np
 import pyautogui
-import pydirectinput
 import threading
 import yaml
 
@@ -33,7 +32,6 @@ width = int(window_width * 0.07)
 height = int(window_height * 0.07)
 
 key_combos = [[]]
-# Combinations for all key presses (!len(keys)), technically constant time
 for i in range(0, len(keys)):
   key_combos.append((keys[i]))
   for j in range(i + 1, len(keys)):
@@ -50,47 +48,55 @@ class OsuEnv(gym.Env):
   def __init__(self, ws):
     super().__init__()
     self.ws = ws
-    self.observation_space = gym.spaces.Box(low=0, high=255, shape=(bottom_height, right_padding - left_padding), dtype=np.uint8)
+    self.observation_space = gym.spaces.Box(low=0, high=255, shape=(height, width), dtype=np.uint8)
     self.action_space = gym.spaces.Discrete(len(key_combos))
     self.model = DQNAgent(self)
     self.previous_observation = None
+    self.initial = True
 
   def step(self, action):
     def press_key(key):
-      pydirectinput.press(key)
+      pyautogui.keyDown(key)
+      pyautogui.keyUp(key)
+      pyautogui.sleep(0.000001)
 
-    threads = []
-    
-    for key in key_combos[action]:
-      t = threading.Thread(target=press_key, args=(key,))
-      threads.append(t)
-      t.start()
-
-    for t in threads:
-      t.join()
-    
-    reward = self.ws.get_reward()
-    print(f'Action: {action} : Reward: {reward}')
-
-    
+    # Make observation before taking action
     im = ImageGrab.grab(bbox =(left_padding, bottom_height, right_padding, screen_height)) 
     shot = np.array(im)
     gray = cv2.cvtColor(shot, cv2.COLOR_BGR2GRAY)
-    gray = resize_frame(gray, width, height)
-    if self.previous_observation is not None:
-        self.model.update_replay_memory((self.previous_observation, action, reward, gray))
-    
-    self.previous_observation = gray
+    obs = resize_frame(gray, width, height)
 
-    return self.previous_observation, reward, self.ws.complete, []
+    # Input keys
+    threads = []
+    try:
+      for key in key_combos[action]:
+        t = threading.Thread(target=press_key, args=(key,))
+        threads.append(t)
+        t.start()
+
+      for t in threads:
+        t.join()
+    except:
+      pass
+    
+    # Get reward
+    reward = self.ws.get_reward()
+    # print(f'Action: {action} : Reward: {reward}')
+
+    return obs, reward, self.ws.complete, []
   
   def reset(self):
-    print("Completed")
+    if self.initial:
+      self.initial = False
+      pyautogui.keyDown('enter')
+      pyautogui.keyUp('enter')
+      pyautogui.sleep(1)
+    else:
+      pyautogui.keyDown('esc')
+      pyautogui.keyUp('esc')
+      pyautogui.sleep(1)
+      pyautogui.keyDown('enter')
+      pyautogui.keyUp('enter')
     self.ws.reset_state()
-    pyautogui.keyDown('esc')
-    pyautogui.keyUp('esc')
-    pyautogui.sleep(1)
-    pyautogui.keyDown('enter')
-    pyautogui.keyUp('enter')
     self.previous_observation = None
-    return np.zeros((screen_height, right_padding - left_padding))
+    return np.zeros((height, width))

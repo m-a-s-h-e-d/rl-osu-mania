@@ -4,6 +4,13 @@ import websocket as websockets
 from enums.state import GameMode, GameState
 from pynput.keyboard import Controller
 
+GEKI_SCORE = 150
+THREE_HUNDRED_SCORE = 100
+SLIDER_BREAK_SCORE = 50
+ONE_HUNDRED_SCORE = 25
+FIFTY_SCORE = 10
+ZERO_SCORE = -100
+
 class MemoryWebSocket():
   def __init__(self, ws_endpoint):
     self.ws_endpoint = ws_endpoint
@@ -15,13 +22,15 @@ class MemoryWebSocket():
     self.state = None
     self.playing = False
     self.complete = False
+    self.prev_hp = 0
+    self.hp = 0
     self.prev_hits = [0, 0, 0, 0, 0, 0]
     self.hits = [0, 0, 0, 0, 0, 0] # PERFECT, 300, sliderBreak (200), 100, 50, 0
 
   def reset_state(self):
     print("Resetting state")
-    self.playing = False
     self.complete = False
+    self.playing = False
     self.hits = [0, 0, 0, 0, 0, 0]
     self.prev_hits = [0, 0, 0, 0, 0, 0]
 
@@ -40,6 +49,7 @@ class MemoryWebSocket():
       self.hits[3] = self.data['gameplay']['hits']['100']
       self.hits[4] = self.data['gameplay']['hits']['50']
       self.hits[5] = self.data['gameplay']['hits']['0']
+      self.prev_hp = self.hp
     else:
       # Check for completion
       if self.playing:
@@ -48,20 +58,20 @@ class MemoryWebSocket():
 
   def get_reward(self):
     reward = 0
-    print(f'Previous: {self.prev_hits}')
-    print(f'Now: {self.hits}')
+    # print(f'Previous: {self.prev_hits}')
+    # print(f'Now: {self.hits}')
     if self.hits[0] > self.prev_hits[0]:
-      reward += 10 * (self.hits[0] - self.prev_hits[0])
+      reward += GEKI_SCORE
     if self.hits[1] > self.prev_hits[1]:
-      reward += 7 * (self.hits[1] - self.prev_hits[1])
+      reward += THREE_HUNDRED_SCORE
     if self.hits[2] > self.prev_hits[2]:
-      reward += 5 * (self.hits[2] - self.prev_hits[2])
+      reward += SLIDER_BREAK_SCORE
     if self.hits[3] > self.prev_hits[3]:
-      reward += 3 * (self.hits[3] - self.prev_hits[3])
+      reward += ONE_HUNDRED_SCORE
     if self.hits[4] > self.prev_hits[4]:
-      reward += 1 * (self.hits[4] - self.prev_hits[4])
+      reward += FIFTY_SCORE
     if self.hits[5] > self.prev_hits[5]:
-      reward -= 10 * (self.hits[5] - self.prev_hits[5])
+      reward += ZERO_SCORE
     self.prev_hits = self.hits.copy()
     return reward
  

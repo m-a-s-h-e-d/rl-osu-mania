@@ -16,7 +16,3 @@ keybinding:
   key2: "f"
   key3: "j"
   key4: "k"
-
-# Rewards for certain events
-rewards:
-  na: "nothing yet"
