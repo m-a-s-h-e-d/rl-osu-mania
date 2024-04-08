@@ -29,22 +29,16 @@ def train_agent():
     if len(agent.memory) >= training_batch_size:
       train_step += 1
       try:
-        print(f'Training at step {train_step}')
         agent.train(epochs, training_batch_size)
       except Exception as e:
         print(f'Failed to train: Error: {e}')
-        time.sleep(5)
       if train_step % 10 == 0:
         try:
-          print(f'Updating target model at step {train_step}')
           agent.update_target()
         except Exception as e:
           print(f'Failed to update: Error: {e}')
-          time.sleep(5)
-      if train_step % 100 == 0:
-        print(f'Saving checkpoint model at step {train_step}')
-        agent.model.save_weights(f'./models/training_model_step{train_step}.h5')
-  print('Training Stopped')
+      # You can add a check here for train steps to save a checkpoint model, a high number is recommended for this
+  print('Agent Training Complete')
     
 if __name__ == '__main__':
   # Read the YAML file
@@ -61,7 +55,7 @@ if __name__ == '__main__':
                               f'If this issue persists, check the process names in settings.yml.')
 
   env = OsuEnv(ws)
-  agent = DQNAgent(env, lr=0.001, gamma=0.25)
+  agent = DQNAgent(env, lr=0.001, gamma=0.90)
   delta_epsilon = agent.epsilon/episodes
   
   time.sleep(1) # Give time to preprocess and load
@@ -91,12 +85,13 @@ if __name__ == '__main__':
         
     agent.set_epsilon(agent.epsilon - delta_epsilon)
     total_rewards.append(total_reward)
+
+  print('Training complete, saving model...')
+  agent.model.save_weights('./models/finished_model.h5')
+
   plt.title('Final Training Results')
   plt.xlabel('Episode')
   plt.ylabel('Total Reward')
   plt.plot([np.mean(total_rewards[tr]) for tr in range(len(total_rewards))])
   plt.show()
-
-  print('Training complete, saving model...')
   t1.join()
-  agent.model.save_weights('./models/finished_model.h5')

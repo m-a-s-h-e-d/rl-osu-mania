@@ -4,12 +4,12 @@ import websocket as websockets
 from enums.state import GameMode, GameState
 from pynput.keyboard import Controller
 
-GEKI_SCORE = 150
-THREE_HUNDRED_SCORE = 100
-SLIDER_BREAK_SCORE = 50
+GEKI_SCORE = 300
+THREE_HUNDRED_SCORE = 200
+SLIDER_BREAK_SCORE = 100
 ONE_HUNDRED_SCORE = 25
 FIFTY_SCORE = 10
-ZERO_SCORE = -100
+ZERO_SCORE = 0 # -100, temporarily removing negative score to prevent it from not pressing
 
 class MemoryWebSocket():
   def __init__(self, ws_endpoint):
